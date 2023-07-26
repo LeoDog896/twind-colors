@@ -5,6 +5,25 @@
 	function copyToClipboard(hex: string) {
 		navigator.clipboard.writeText(hex);
 	}
+
+	function weightToTextColor(weight: string) {
+		switch (weight) {
+			case '50':
+			case '100':
+			case '200':
+			case '300':
+			case '400':
+				return '#000';
+			case '500':
+			case '600':
+			case '700':
+			case '800':
+			case '900':
+				return '#fff';
+			default:
+				return '#000';
+		}
+	}
 </script>
 
 <div class="colors" style:grid-template-columns={`repeat(${splitAmount}, 1fr)`}>
@@ -15,9 +34,14 @@
 		<div class="container">
 			<h2 style:color={Object.values(color)[5]}>{titleCaseName}</h2>
 			<div class="color-wall">
-				{#each Object.entries(color).reverse() as [_, hex]}
-					<button class="color" style:background={hex} style:color={hex} 
-                        on:click={() => copyToClipboard(hex)} />
+				{#each Object.entries(color).reverse() as [weight, hex]}
+					<button
+						class="color"
+						style:background={hex}
+						style:color={hex}
+						on:click={() => copyToClipboard(hex)}
+						><span style:color={weightToTextColor(weight)}>{weight}</span></button
+					>
 				{/each}
 			</div>
 		</div>
@@ -30,6 +54,11 @@
 		text-align: center;
 	}
 
+	button.color span {
+		color: white;
+		font-size: 0.5rem;
+	}
+
 	button.color {
 		display: flex;
 		flex-direction: column;
@@ -37,17 +66,17 @@
 		justify-content: center;
 		width: 100%;
 		height: 1rem;
-        border: none;
-        cursor: pointer;
+		border: none;
+		cursor: pointer;
 	}
 
-    button.color:hover {
-        filter: brightness(0.8);
-    }
+	button.color:hover {
+		filter: brightness(0.8);
+	}
 
-    button.color:active {
-        filter: brightness(0.6);
-    }
+	button.color:active {
+		filter: brightness(0.6);
+	}
 
 	div.color-wall {
 		display: flex;

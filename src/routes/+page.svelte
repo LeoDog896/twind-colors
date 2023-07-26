@@ -31,7 +31,9 @@
 
 <main>
 	<h1><a href="https://twind.dev/">Twind</a> Colors</h1>
-	<h2>Source @ <a href="https://github.com/LeoDog896/twind-colors">GitHub</a>. Click to copy colors</h2>
+	<h2>
+		Source @ <a href="https://github.com/LeoDog896/twind-colors">GitHub</a>. Click to copy colors
+	</h2>
 
 	<Colors colors={sortedColors} splitAmount={Object.keys(sortedColors).length / 2} />
 	<Colors colors={grayColors} splitAmount={Object.keys(grayColors).length} />
